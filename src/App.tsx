@@ -1,5 +1,5 @@
+import { HangmanFigure } from "@/components/HangmanFigure";
 import { Layout } from "@/components/Layout";
-import { HangmanFigure } from "./components/HangmanFigure";
 
 const App = () => {
   return (
