@@ -4,7 +4,7 @@ import { HangmanFigure } from "./components/HangmanFigure";
 const App = () => {
   return (
     <Layout>
-      <HangmanFigure />
+      <HangmanFigure remainingGuesses={5} />
     </Layout>
   );
 };

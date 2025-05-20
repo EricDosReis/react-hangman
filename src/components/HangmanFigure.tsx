@@ -1,3 +1,6 @@
+import { GUESSES } from "@/constants";
+import { motion } from "motion/react";
+
 const gallowsLines = [
   {
     x1: 20,
@@ -69,17 +72,39 @@ const bodyParts = [
   },
 ];
 
-const HangmanFigure = () => {
+const HEAD_OFFSET = 1;
+
+type HangmanFigureProps = {
+  remainingGuesses: number;
+};
+
+const HangmanFigure = ({ remainingGuesses }: HangmanFigureProps) => {
   return (
     <svg height="200" width="200" viewBox="0 0 200 200">
       {gallowsLines.map((line, index) => (
         <line key={index} {...line} className="stroke-gray-200 stroke-[4px]" />
       ))}
 
-      <circle {...head} className="stroke-pink fill-transparent stroke-[4px]" />
+      <motion.circle
+        {...head}
+        initial={{ scale: 0 }}
+        animate={{ scale: GUESSES - remainingGuesses > 0 ? 1 : 0 }}
+        transition={{ duration: 0.25 }}
+        className="stroke-pink fill-transparent stroke-[4px]"
+      />
 
-      {bodyParts.map((part) => (
-        <line key={part.id} {...part} className="stroke-pink stroke-[4px]" />
+      {bodyParts.map((part, index) => (
+        <motion.line
+          key={part.id}
+          {...part}
+          initial={{ pathLength: 0 }}
+          animate={{
+            pathLength:
+              GUESSES - remainingGuesses > index + HEAD_OFFSET ? 1 : 0,
+          }}
+          transition={{ duration: 0.25 }}
+          className="stroke-pink stroke-[4px]"
+        />
       ))}
     </svg>
   );
