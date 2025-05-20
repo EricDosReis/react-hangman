@@ -1,9 +1,10 @@
 import { Layout } from "@/components/Layout";
+import { HangmanFigure } from "./components/HangmanFigure";
 
 const App = () => {
   return (
     <Layout>
-      <h1>Hangman game</h1>
+      <HangmanFigure />
     </Layout>
   );
 };
